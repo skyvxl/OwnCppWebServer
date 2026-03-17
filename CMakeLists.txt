@@ -8,7 +8,13 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 add_executable(OwnCppWebServer
   Source/main.cpp
+  ThirdParty/httplib.h
 )
+
+target_include_directories(OwnCppWebServer PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/ThirdParty)
+
+find_package(nlohmann_json REQUIRED)
+target_link_libraries(OwnCppWebServer PRIVATE nlohmann_json)
 
 if (POLICY CMP0141)
   cmake_policy(SET CMP0141 NEW)
